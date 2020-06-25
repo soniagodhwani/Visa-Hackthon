@@ -3,9 +3,7 @@ package com.visa.hackathon.virtualQueueAndOffers.Model.Queue;
 
 import com.sun.istack.NotNull;
 import com.visa.hackathon.virtualQueueAndOffers.Enum.CustomerQStatus;
-import com.visa.hackathon.virtualQueueAndOffers.Model.Offer.Offer;
 import com.visa.hackathon.virtualQueueAndOffers.Model.UserProfiles.Customer;
-import com.visa.hackathon.virtualQueueAndOffers.Model.UserProfiles.Merchant;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,6 +31,9 @@ public class CustomerQueueRelation {
     @ManyToOne
     @JoinColumn(name = "QUEUE_ID")
     private Queue queue;
+
+    @NotNull
+    private Integer initialQposition;
 
     private Integer queuePosition;
 
