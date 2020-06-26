@@ -24,7 +24,7 @@ public class CustomerQueueRelation {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "CUSTOMER_ID")
+    @JoinColumn(name= "CUSTOMER_ID",referencedColumnName = "USER_ID")
     private Customer customer;
 
     @NotNull

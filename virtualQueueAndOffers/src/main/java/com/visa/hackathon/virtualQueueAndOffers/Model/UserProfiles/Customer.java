@@ -16,9 +16,11 @@ public class Customer {
 
 
     @Id
-    @NotNull
+    private long id;
+
     @OneToOne
-    @JoinColumn(name="ID",referencedColumnName = "USER_ID")
+    @JoinColumn(referencedColumnName = "id")
+    @MapsId
     private User user;
 
     @NonNull

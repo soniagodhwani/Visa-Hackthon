@@ -20,7 +20,7 @@ public class Queue {
     private long qeueId;
 
     @OneToOne
-    @JoinColumn(name = "MERCHANT_ID")
+    @JoinColumn(name = "MERCHANT_ID",referencedColumnName = "USER_ID")
     private Merchant merchant;
 
     @OneToMany(mappedBy = "queue")

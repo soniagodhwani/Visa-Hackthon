@@ -8,18 +8,21 @@ import lombok.NonNull;
 import lombok.Setter;
 
 import javax.persistence.*;
+
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class Merchant {
+public class Merchant{
 
     @Id
-    @NotNull
+    private long id;
+
     @OneToOne
-    @JoinColumn(name= "ID",referencedColumnName = "USER_ID")
-    private User user_id;
+    @JoinColumn(referencedColumnName = "id")
+    @MapsId
+    private User user;
 
     @NotNull
     private String visaNerchantId;
@@ -35,8 +38,6 @@ public class Merchant {
 
     private Float avgCustomerTime;
 
-    @OneToMany(mappedBy = "merchant")
-    private List<Offer> Offers;
 
     @OneToMany(mappedBy = "merchant")
     private List<MerchantOfferRelation> merchantOfferRelations;

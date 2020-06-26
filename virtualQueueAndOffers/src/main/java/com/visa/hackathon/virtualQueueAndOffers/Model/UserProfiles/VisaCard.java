@@ -35,7 +35,7 @@ public class VisaCard {
     
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "CUSTOMER_ID")
+    @JoinColumn(name = "CUSTOMER_ID",referencedColumnName = "USER_ID")
     private Customer customer;
 
 }
