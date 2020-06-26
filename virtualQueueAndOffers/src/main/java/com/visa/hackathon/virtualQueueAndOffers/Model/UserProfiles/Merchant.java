@@ -25,18 +25,18 @@ public class Merchant{
     private User user;
 
     @NotNull
-    private String visaNerchantId;
+    private String visaMerchantId;
 
     @NotNull
     private String visaStoreId;
 
     @NotNull
-    private Integer maxStoreCpacity;
+    private Integer maxStoreCapacity;
 
     @NotNull
     private  Integer maxAllowingCapacity;
 
-    private Float avgCustomerTime;
+    private Float avgCustomerWaitTime;
 
 
     @OneToMany(mappedBy = "merchant")

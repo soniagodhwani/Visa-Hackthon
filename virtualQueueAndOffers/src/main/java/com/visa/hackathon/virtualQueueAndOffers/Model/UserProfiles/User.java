@@ -23,14 +23,14 @@ public class User{
 
     @NonNull
     private  String password;
-    @OneToOne(mappedBy = "user", optional = false)
-    private Customer customer;
+//    @OneToOne(mappedBy = "user", optional = false)
+//    private Customer customer;
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
+//    public Customer getCustomer() {
+//        return customer;
+//    }
+//
+//    public void setCustomer(Customer customer) {
+//        this.customer = customer;
+//    }
 }

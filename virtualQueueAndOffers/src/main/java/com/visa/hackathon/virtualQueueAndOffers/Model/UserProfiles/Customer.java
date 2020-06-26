@@ -1,5 +1,6 @@
 package com.visa.hackathon.virtualQueueAndOffers.Model.UserProfiles;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import com.visa.hackathon.virtualQueueAndOffers.Model.Queue.CustomerQueueRelation;
 import lombok.Getter;
@@ -39,5 +40,6 @@ public class Customer {
     private List<VisaCard> cards;
 
     @OneToMany(mappedBy = "customer")
+    @JsonManagedReference
     private List<CustomerQueueRelation> customerQueueRelations;
 }
