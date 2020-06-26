@@ -1,0 +1,9 @@
+go to open ssl folder,
+in bin...
+>>>openssl
+>>> pkcs12 -export -in cert.pem -inkey privatekey.pem -certfile cert.pem -out newKey.p12
+
+now in c://programfiles/java/jdk1.8/bin
+keytool -importkeystore -srckeystore newKey.p12 -srcstoretype pkcs12 -destkeystore newKey.jks -deststoretype jks -deststorepass 12Three456# 
+
+keytool -import -alias ejbca -keystore newkey.jks -file DigiCertGlobalRootCA.crt -storepass 12Three456#
