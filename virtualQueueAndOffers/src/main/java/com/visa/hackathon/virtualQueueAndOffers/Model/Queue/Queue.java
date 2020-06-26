@@ -28,8 +28,12 @@ public class Queue {
     @JsonManagedReference
     private List<CustomerQueueRelation> customerQueueRelations;
 
-    // wait time for customer which will be added next
+    // start with avgTime a person spends in the queue for that store
+    @Column(columnDefinition = "float default 10")
     private Float waitTimeInMins;
+
+    @Column(columnDefinition = "int default 0")
+    private Integer currentCountInStore;
 
     private Integer queueLen;
 

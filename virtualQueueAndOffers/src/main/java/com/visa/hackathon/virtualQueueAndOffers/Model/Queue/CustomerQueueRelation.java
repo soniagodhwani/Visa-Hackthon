@@ -5,8 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import com.visa.hackathon.virtualQueueAndOffers.Enum.CustomerQStatus;
 import com.visa.hackathon.virtualQueueAndOffers.Model.UserProfiles.Customer;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -15,6 +14,8 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class CustomerQueueRelation {
 
     @Id

@@ -6,5 +6,6 @@ public enum CustomerQStatus {
     CHECKEDIN,
     CHECKOUT,
     ELIMINATED,
-    CANCELLED
+    CANCELLED,
+    ENTRY_AVAILABLE_IMMEDIATELY
 }
