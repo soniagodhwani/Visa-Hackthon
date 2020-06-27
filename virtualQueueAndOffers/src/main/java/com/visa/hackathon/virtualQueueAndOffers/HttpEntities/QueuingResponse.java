@@ -13,8 +13,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QueuingResponse {
-
-    private CustomerQueueRelation customerQueueRelation;
+	
+    
+	private CustomerQueueRelation customerQueueRelation;
     private ResponseStatus responseStatus;
     private String message;
 

@@ -1,7 +1,11 @@
 package com.visa.hackathon.virtualQueueAndOffers.Model.UserProfiles;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -12,6 +16,8 @@ import javax.persistence.ManyToOne;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class VisaCard {
 
     @Id
@@ -35,6 +41,7 @@ public class VisaCard {
     
     @NotNull
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "CUSTOMER_ID",referencedColumnName = "USER_ID")
     private Customer customer;
 

@@ -2,7 +2,11 @@ package com.visa.hackathon.virtualQueueAndOffers.Model.UserProfiles;
 
 
 import com.sun.istack.NotNull;
+import com.visa.hackathon.virtualQueueAndOffers.Enum.UserType;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 
@@ -11,10 +15,11 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User{
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
@@ -23,14 +28,8 @@ public class User{
 
     @NonNull
     private  String password;
-//    @OneToOne(mappedBy = "user", optional = false)
-//    private Customer customer;
 
-//    public Customer getCustomer() {
-//        return customer;
-//    }
-//
-//    public void setCustomer(Customer customer) {
-//        this.customer = customer;
-//    }
+    private UserType userType;
+
 }
+	

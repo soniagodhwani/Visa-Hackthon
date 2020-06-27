@@ -32,7 +32,7 @@ public class QueingService {
             return null;
         }
         Queue queue = queueDAO.findById(queueId).orElse(null);
-        Customer customer = customerDAO.findById(customerId).orElse(null);
+        Customer customer = customerDAO.findById(customerId);
         Integer currCount = queue.getCurrentCountInStore();
         Integer maxAllowingCap = queue.getMerchant().getMaxAllowingCapacity();
 

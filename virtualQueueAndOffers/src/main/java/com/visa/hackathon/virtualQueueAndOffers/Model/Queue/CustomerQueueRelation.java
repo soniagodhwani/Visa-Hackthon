@@ -26,13 +26,11 @@ public class CustomerQueueRelation {
     @NotNull
     @ManyToOne
     @JoinColumn(name= "CUSTOMER_ID",referencedColumnName = "USER_ID")
-    @JsonBackReference
     private Customer customer;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "QUEUE_ID")
-    @JsonBackReference
     private Queue queue;
 
     @NotNull

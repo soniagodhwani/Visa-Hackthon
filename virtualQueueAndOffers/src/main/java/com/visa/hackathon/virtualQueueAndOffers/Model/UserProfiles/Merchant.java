@@ -3,7 +3,10 @@ package com.visa.hackathon.virtualQueueAndOffers.Model.UserProfiles;
 import com.sun.istack.NotNull;
 import com.visa.hackathon.virtualQueueAndOffers.Model.Offer.MerchantOfferRelation;
 import com.visa.hackathon.virtualQueueAndOffers.Model.Offer.Offer;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 
@@ -14,9 +17,13 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Merchant{
+@AllArgsConstructor
+@NoArgsConstructor
+public class Merchant implements UserProfile{
 
     @Id
+    @NonNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @OneToOne
@@ -36,7 +43,7 @@ public class Merchant{
     @NotNull
     private  Integer maxAllowingCapacity;
 
-    private Float avgCustomerWaitTime;
+	private Float avgCustomerWaitTime;
 
 
     @OneToMany(mappedBy = "merchant")
