@@ -105,7 +105,30 @@
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path</artifactId>
 		</dependency>
-
+		<dependency>
+		    <groupId>com.visa</groupId>
+		    <artifactId>merchant_locator_api</artifactId>
+		    <version>1.0.0-SNAPSHOT</version>
+		    <scope>compile</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.visa</groupId>
+		    <artifactId>users_api</artifactId>
+		    <version>1.0.0-SNAPSHOT</version>
+		    <scope>compile</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.visa</groupId>
+		    <artifactId>merchant_search_api</artifactId>
+		    <version>1.0.0-SNAPSHOT</version>
+		    <scope>compile</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.visa</groupId>
+		    <artifactId>offers_api</artifactId>
+		    <version>1.0.0-SNAPSHOT</version>
+		    <scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

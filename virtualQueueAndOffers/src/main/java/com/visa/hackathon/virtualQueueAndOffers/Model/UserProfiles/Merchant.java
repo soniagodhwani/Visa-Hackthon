@@ -33,6 +33,19 @@ public class Merchant implements UserProfile{
 
     @NotNull
     private String visaMerchantId;
+    
+    @Transient
+    private String merchantName;
+    
+    @Transient
+    private List<String> merchantCategoryCode;
+    
+
+    @Transient
+    private String latitude;
+
+    @Transient
+    private String longitude;
 
     @NotNull
     private String visaStoreId;

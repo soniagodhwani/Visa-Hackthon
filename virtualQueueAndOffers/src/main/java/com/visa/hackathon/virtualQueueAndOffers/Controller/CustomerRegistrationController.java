@@ -23,7 +23,7 @@ public class CustomerRegistrationController {
 	@PostMapping(value = "/registerCustomer", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public RegisterResponse registerCustomer(@RequestBody Customer customer){
 		String message = customerService.registerCustomer(customer);
-		if(!message.contains("SUCCESS"))
+		if(!message.contains("success"))
 			return new RegisterResponse(null, ResponseStatus.FAILURE, message);
 		else
 			return new RegisterResponse(customer, ResponseStatus.SUCCESS, "Registration successful!");

@@ -26,32 +26,16 @@ public class LoginController {
 	
 	@Autowired
 	private LoginService loginService;
-	
-	@Autowired
-	private MerchantService merchantService;
-	
-	@Autowired
-	private CustomerService customerService;
-	
+		
 	
 	@PostMapping("/login")
 	public LoginResponse authenticateUser(@RequestBody User user){
-		
-		User loggedUser = loginService.authenticateUser(user.getUsername(), user.getPassword());
-		
-		if(loggedUser!=null){
-			if(loggedUser.getUserType().equals(UserType.MERCHANT)){
-			UserProfile userProfile = merchantService.getMerchantByUser(loggedUser);
+		UserProfile userProfile = loginService.authenticateUser(user.getUsername(), user.getPassword());
+		if(userProfile!=null){
 			return new LoginResponse(userProfile, ResponseStatus.SUCCESS, "Logged in successfully");
-			}
-			else if(loggedUser.getUserType().equals(UserType.CUSTOMER)){
-				UserProfile userProfile = customerService.getCustomerByUser(loggedUser);
-				return new LoginResponse(userProfile, ResponseStatus.SUCCESS, "Logged in successfully");
-	
-			}
 		}
-		return new LoginResponse(null, ResponseStatus.FAILURE, "Incorrect UserName or Password");
-
+		else
+			return new LoginResponse(null, ResponseStatus.FAILURE, "Incorrect UserName or Password");
 	}
 	
 }

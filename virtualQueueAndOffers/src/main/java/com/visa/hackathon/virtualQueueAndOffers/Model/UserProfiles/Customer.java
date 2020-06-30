@@ -49,9 +49,9 @@ public class Customer implements UserProfile{
     @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST},orphanRemoval = true)
     @JsonManagedReference
     private List<VisaCard> cards;
-
+    
+    @JsonIgnore
     @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST},orphanRemoval = true)
-    @JsonManagedReference
     private List<CustomerQueueRelation> customerQueueRelations;
     
     public void addCard(VisaCard visaCard) {
