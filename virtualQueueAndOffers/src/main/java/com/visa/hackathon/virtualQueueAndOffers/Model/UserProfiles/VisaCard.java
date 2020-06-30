@@ -1,6 +1,7 @@
 package com.visa.hackathon.virtualQueueAndOffers.Model.UserProfiles;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import lombok.AllArgsConstructor;

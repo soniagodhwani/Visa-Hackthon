@@ -2,6 +2,7 @@ package com.visa.hackathon.virtualQueueAndOffers.Model.Queue;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import com.visa.hackathon.virtualQueueAndOffers.Enum.CustomerQStatus;
 import com.visa.hackathon.virtualQueueAndOffers.Model.UserProfiles.Customer;
@@ -26,11 +27,13 @@ public class CustomerQueueRelation {
     @NotNull
     @ManyToOne
     @JoinColumn(name= "CUSTOMER_ID",referencedColumnName = "USER_ID")
+    @JsonBackReference
     private Customer customer;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "QUEUE_ID")
+    @JsonBackReference
     private Queue queue;
 
     @NotNull

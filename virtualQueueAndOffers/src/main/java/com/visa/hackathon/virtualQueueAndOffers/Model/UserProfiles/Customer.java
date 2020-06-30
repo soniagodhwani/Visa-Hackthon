@@ -1,6 +1,7 @@
 package com.visa.hackathon.virtualQueueAndOffers.Model.UserProfiles;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import com.visa.hackathon.virtualQueueAndOffers.Model.Queue.CustomerQueueRelation;
@@ -46,9 +47,11 @@ public class Customer implements UserProfile{
     private Boolean hasVisaCard;
 
     @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST},orphanRemoval = true)
+    @JsonManagedReference
     private List<VisaCard> cards;
 
     @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST},orphanRemoval = true)
+    @JsonManagedReference
     private List<CustomerQueueRelation> customerQueueRelations;
     
     public void addCard(VisaCard visaCard) {

@@ -9,14 +9,25 @@ import com.visa.hackathon.virtualQueueAndOffers.Model.Queue.CustomerQueueRelatio
 import com.visa.hackathon.virtualQueueAndOffers.Model.Queue.Queue;
 import com.visa.hackathon.virtualQueueAndOffers.Model.UserProfiles.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import static org.springframework.web.servlet.mvc.method.annotation.SseEmitter.event;
 
 @Service
 public class QueingService {
+
+    Map<Long, SseEmitter> customerEmitterMap = new HashMap<Long, SseEmitter>();
 
     @Autowired
     private QueueDAO queueDAO;
@@ -53,7 +64,7 @@ public class QueingService {
         return customerQueueRelation;
     }
 
-    public CustomerQueueRelation leaveQueue(long customer_queue_relation_id){
+    public CustomerQueueRelation leaveQueue(long customer_queue_relation_id) throws IOException {
 
         CustomerQueueRelation customerQueueRelation = customerQueueRelationDAO.findById(customer_queue_relation_id).orElse(null);
 
@@ -74,6 +85,8 @@ public class QueingService {
             cqr.setQueuePosition(cqr.getQueuePosition() - 1 );
             cqr.setWaitTimeInMins(cqr.getWaitTimeInMins() - merchantAvgWaitTime);
             customerQueueRelationDAO.save(cqr);
+            SseEmitter.SseEventBuilder event = event().name("WAIT_TIME_UPDATE").id(String.valueOf(cqr.getCustomerQueueRelationId())).data(cqr, MediaType.APPLICATION_JSON);
+            customerEmitterMap.get(cqr.getCustomer().getId()).send(event);
         }
 
         queue.setWaitTimeInMins(queue.getWaitTimeInMins() - merchantAvgWaitTime);
@@ -84,7 +97,7 @@ public class QueingService {
     }
 
 
-    public CustomerQueueRelation checkIn(long customer_queue_relation_id) {
+    public CustomerQueueRelation checkIn(long customer_queue_relation_id) throws IOException {
         CustomerQueueRelation customerQueueRelation = customerQueueRelationDAO.findById(customer_queue_relation_id).orElse(null);
 
 
@@ -121,6 +134,8 @@ public class QueingService {
             cqr.setQueuePosition(cqr.getQueuePosition() - 1 );
             cqr.setWaitTimeInMins(cqr.getWaitTimeInMins() - merchantAvgWaitTime);
             customerQueueRelationDAO.save(cqr);
+            SseEmitter.SseEventBuilder event = event().name("WAIT_TIME_UPDATE").id(String.valueOf(cqr.getCustomerQueueRelationId())).data(cqr, MediaType.APPLICATION_JSON);
+            customerEmitterMap.get(cqr.getCustomer().getId()).send(event);
         }
 
         queue.setCurrentCountInStore(queue.getCurrentCountInStore()+1);
@@ -154,5 +169,17 @@ public class QueingService {
 
         // code to publish to other users about change in their queue position and especially to queue poition 1 to enter the store
         return customerQueueRelation;
+    }
+
+    public SseEmitter addAsSubscriber(long customerId) {
+        if(customerEmitterMap.containsKey(customerId)){
+            return customerEmitterMap.get(customerId);
+        }else{
+            SseEmitter emitter = new SseEmitter((long)100000000);
+            customerEmitterMap.putIfAbsent(customerId,emitter);
+
+            return emitter;
+        }
+
     }
 }

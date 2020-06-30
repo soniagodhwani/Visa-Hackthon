@@ -30,6 +30,7 @@ public class Queue {
     private Merchant merchant;
 
     @OneToMany(mappedBy = "queue")
+    @JsonManagedReference
     private List<CustomerQueueRelation> customerQueueRelations;
 
     // start with avgTime a person spends in the queue for that store
