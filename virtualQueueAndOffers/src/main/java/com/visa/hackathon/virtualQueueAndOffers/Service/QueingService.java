@@ -162,6 +162,7 @@ public class QueingService {
 
         customerQueueRelation.setCheckOutTime(LocalDateTime.now());
         customerQueueRelation.setCustomerQStatus(CustomerQStatus.CHECKOUT);
+        customerQueueRelation.setIsValid(false);
         customerQueueRelationDAO.save(customerQueueRelation);
 
         queue.setCurrentCountInStore(queue.getCurrentCountInStore() - 1);

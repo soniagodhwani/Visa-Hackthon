@@ -68,7 +68,7 @@ public class QueueController {
             return new QueuingResponse(null, ResponseStatus.FAILURE,"You were not present in the queue");
         }
         else if(relation.getCustomerQStatus() == CustomerQStatus.JOINED){
-            return new QueuingResponse(relation, ResponseStatus.FAILURE,"WAIT IN QUEUE FOR SOME MORE TIME! STORE IS FULL RIGHT NOW!");
+            return new QueuingResponse(relation, ResponseStatus.FAILURE,"WAIT IN QUEUE FOR SOME MORE TIME! STORE IS FULL RIGHT NOW OR YOUR QUEUE POSITION IS STILL NOT ONE !");
         }
         else if(relation.getCustomerQStatus() == CustomerQStatus.ENTRY_AVAILABLE_IMMEDIATELY){
             return new QueuingResponse(relation, ResponseStatus.FAILURE,"THE STORE BECAME FULL, PLEASE TRY JOINING THE QUEUE AGAIN.");
