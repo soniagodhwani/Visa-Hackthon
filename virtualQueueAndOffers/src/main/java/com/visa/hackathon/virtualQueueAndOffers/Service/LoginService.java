@@ -24,7 +24,7 @@ public class LoginService {
 	private CustomerService customerService;
 
     public UserProfile authenticateUser(String username, String password) {
-        User userDetails = userDAO.findByUsername(username);
+        User userDetails = userDAO.findByUsernameIgnoreCase(username);
         if(userDetails== null)
         	return null;
         else if(userDetails.getPassword().equals(password)){

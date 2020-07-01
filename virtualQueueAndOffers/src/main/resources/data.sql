@@ -1,19 +1,23 @@
-INSERT INTO USER (id,username, password) values
-(1,'sonia','sonia'),
-(2,'chandler','chandler'),
-(3,'joey shop','joey'),
-(4,'monica store','monica');
+INSERT INTO USER (id,username, password, user_type) values
+(1,'sonia','sonia',1),
+(2,'chandler','chandler',1),
+(3,'joey shop','joey',0),
+(4,'monica store','monica',0);
 
 INSERT INTO CUSTOMER(USER_ID,EMAIL,PHONE,NAME,HAS_VISA_CARD) values
 (1,'sonia@gmail.com','123456789','sonia',TRUE),
 (2,'chandler@gmail.com','123456789','joey',TRUE);
 
 INSERT INTO MERCHANT(USER_ID, VISA_STORE_ID,VISA_MERCHANT_ID,MAX_STORE_CAPACITY,MAX_ALLOWING_CAPACITY,AVG_CUSTOMER_WAIT_TIME) values
-(3,1,1,10,7,10),
-(4,2,2,15,11,8);
+(3,'179653643',1,10,7,10),
+(4,'132031479',2,15,11,8);
 
 INSERT  INTO QUEUE(QUEUE_ID,QUEUE_LEN,MERCHANT_ID,WAIT_TIME_IN_MINS,CURRENT_COUNT_IN_STORE) values
 (1,0,3,10,3),
 (2,10,4,50,20);
 
+INSERT INTO OFFER(OFFER_ID,DESCRIPTION, END_DATE, NAME, START_DATE, VISA_OFFER_ID) values
+(1,'test','12/02/2021','test','12/02/2019',123);
 
+INSERT INTO MERCHANT_OFFER_RELATION(MERCHANT_OFFER_RELATION_ID, MERCHANT_ID, OFFER_ID) values
+(1,3,1);

@@ -39,7 +39,7 @@ public class MerchantService {
 				return "SUCCESS";
 			}
 			catch(Exception e){				
-				return e.getMessage();
+				return "Error in saving customer details";
 			}
 		}
 	}

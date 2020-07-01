@@ -20,7 +20,7 @@ public class MerchantRegistrationController {
 	public RegisterResponse registerCustomer(@RequestBody Merchant merchant){
 		String message= merchantService.registerMerchant(merchant);
 		if(!message.contains("SUCCESS"))
-			return new RegisterResponse(null, ResponseStatus.FAILURE, "Merchant details already present");
+			return new RegisterResponse(null, ResponseStatus.FAILURE, message);
 		else
 			return new RegisterResponse(merchant, ResponseStatus.SUCCESS, "Registration successful!");
 	}

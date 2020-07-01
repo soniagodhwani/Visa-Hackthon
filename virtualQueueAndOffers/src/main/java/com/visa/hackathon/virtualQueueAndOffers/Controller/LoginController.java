@@ -22,9 +22,6 @@ import com.visa.hackathon.virtualQueueAndOffers.Service.CustomerService;
 import com.visa.hackathon.virtualQueueAndOffers.Service.LoginService;
 import com.visa.hackathon.virtualQueueAndOffers.Service.MerchantService;
 
-import java.awt.*;
-
-
 @RestController
 public class LoginController {
 	

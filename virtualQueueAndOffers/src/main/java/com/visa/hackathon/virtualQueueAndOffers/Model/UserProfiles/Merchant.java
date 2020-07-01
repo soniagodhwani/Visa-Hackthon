@@ -1,5 +1,6 @@
 package com.visa.hackathon.virtualQueueAndOffers.Model.UserProfiles;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import com.visa.hackathon.virtualQueueAndOffers.Model.Offer.MerchantOfferRelation;
 import com.visa.hackathon.virtualQueueAndOffers.Model.Offer.Offer;
@@ -40,6 +41,9 @@ public class Merchant implements UserProfile{
     @Transient
     private List<String> merchantCategoryCode;
     
+    @Transient
+    private long queueId;
+    
 
     @Transient
     private String latitude;
@@ -57,9 +61,10 @@ public class Merchant implements UserProfile{
     private  Integer maxAllowingCapacity;
 
 	private Float avgCustomerWaitTime;
-
+	
 
     @OneToMany(mappedBy = "merchant")
+    @JsonBackReference
     private List<MerchantOfferRelation> merchantOfferRelations;
 
 }
