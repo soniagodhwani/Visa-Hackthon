@@ -1,6 +1,7 @@
 package com.visa.hackathon.virtualQueueAndOffers.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,9 @@ import com.visa.hackathon.virtualQueueAndOffers.Service.CustomerService;
 import com.visa.hackathon.virtualQueueAndOffers.Service.LoginService;
 import com.visa.hackathon.virtualQueueAndOffers.Service.MerchantService;
 
+import java.awt.*;
+
+
 @RestController
 public class LoginController {
 	
@@ -28,7 +32,7 @@ public class LoginController {
 	private LoginService loginService;
 		
 	
-	@PostMapping("/login")
+	@PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public LoginResponse authenticateUser(@RequestBody User user){
 		UserProfile userProfile = loginService.authenticateUser(user.getUsername(), user.getPassword());
 		if(userProfile!=null){

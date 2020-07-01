@@ -17,10 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static org.springframework.web.servlet.mvc.method.annotation.SseEmitter.event;
 
@@ -37,6 +34,15 @@ public class QueingService {
 
     @Autowired
     private CustomerDAO customerDAO;
+
+    public List<Queue> getQueues(long customer_id) {
+        List<CustomerQueueRelation> customersQRs = customerQueueRelationDAO.findAllByCustomerAndIsValid(customer_id, true);
+        List<Queue> queues = new ArrayList<>();
+        for(CustomerQueueRelation cqr: customersQRs){
+            queues.add(cqr.getQueue());
+        }
+        return queues;
+    }
 
     public CustomerQueueRelation joinQueue(long customerId, long queueId){
         if(customerQueueRelationDAO.existsByCustomer_IdAndQueue_QueueIdAndIsValid(customerId,queueId,true)){

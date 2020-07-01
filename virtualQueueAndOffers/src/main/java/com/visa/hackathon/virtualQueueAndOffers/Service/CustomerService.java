@@ -47,11 +47,11 @@ public class CustomerService {
 		if(!this.isUniquePhone(customer.getPhone()))
 			return "Phone number already present";
 		
-		if(customer.getCards()!=null){
-			for(VisaCard card: customer.getCards()){
-				card.setCustomer(customer);
-			}
-		}
+//		if(customer.getCards()!=null){
+//			for(VisaCard card: customer.getCards()){
+//				card.setCustomer(customer);
+//			}
+//		}
 		
 		try{
 			saveCustomerDetails(customer);
@@ -64,7 +64,7 @@ public class CustomerService {
 		if(customer.getHasVisaCard()){
 			//save customer card details
 			try{
-				saveCustomerCardDetails(customer);
+				//saveCustomerCardDetails(customer);
 			}
 			catch(Exception e){
 				e.printStackTrace();
@@ -108,11 +108,11 @@ public class CustomerService {
 	}
 
 	private void saveCustomerCardDetails(Customer customer) throws Exception {
-		
+
 		for(VisaCard visaCard: customer.getCards()){
 			try{
 				SaveCardpostPayload body = new SaveCardpostPayload();
-		        
+
 		        Card card = new Card();
 		        card.setExpirationMonth(visaCard.getExpirationMonth());
 		        card.setExpirationYear(visaCard.getExpirationYear());
@@ -120,18 +120,18 @@ public class CustomerService {
 		        card.setBillingZipCode(visaCard.getBillingZipCode());
 		        card.setCardNumber(visaCard.getCardNumber());
 		        card.setNameOnCard(visaCard.getNameOnCard());
-		        
+
 		        body.setCard(card);
 		        body.setCommunityCode("GAP");
 		        body.setUserKey(String.valueOf(customer.getId()));
-		        
+
 		        ApiClient apiClient = new ApiClient();
 		        apiClient.setUsername(api.getUsername());
 		        apiClient.setPassword(api.getPassword());
 		        apiClient.setKeystorePath(api.getKeystorePath());
 		        apiClient.setKeystorePassword(api.getKeystorePassword());
 		        apiClient.setPrivateKeyPassword(api.getPrivateKeyPassword());
-		
+
 		        VopUsersApi vopUsersApi = new VopUsersApi(apiClient);
 		        SaveCardpostResponse response = vopUsersApi.postsaveCard(body);
 		        if(!response.getResponseStatus().getCode().equals("SUCCESS")){
@@ -143,7 +143,7 @@ public class CustomerService {
 				throw new Exception(e.getMessage());
 			}
 		}
-			
+
 	}
 
 	private void saveCustomerDetails(Customer customer) {

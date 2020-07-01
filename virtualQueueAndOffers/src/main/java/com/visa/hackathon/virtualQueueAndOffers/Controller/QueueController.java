@@ -4,6 +4,7 @@ import com.visa.hackathon.virtualQueueAndOffers.Enum.CustomerQStatus;
 import com.visa.hackathon.virtualQueueAndOffers.Enum.ResponseStatus;
 import com.visa.hackathon.virtualQueueAndOffers.HttpEntities.QueuingResponse;
 import com.visa.hackathon.virtualQueueAndOffers.Model.Queue.CustomerQueueRelation;
+import com.visa.hackathon.virtualQueueAndOffers.Model.Queue.Queue;
 import com.visa.hackathon.virtualQueueAndOffers.Service.QueingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import javax.xml.stream.events.Comment;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.springframework.web.servlet.mvc.method.annotation.SseEmitter.event;
 
@@ -91,6 +93,11 @@ public class QueueController {
         else{
             return new QueuingResponse(relation,ResponseStatus.SUCCESS,"You can now leave the store");
         }
+    }
+
+    @GetMapping(path="/{customer_id}")
+    public List<Queue> getUserQueues(@PathVariable("customer_id") long customer_id){
+        return  queingService.getQueues(customer_id);
     }
 
 

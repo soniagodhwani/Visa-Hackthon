@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.assertj.core.util.Arrays;
+//import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.visa.developer.sample.merchant_locator_api.model.ResponseValues;
+//import com.visa.developer.sample.merchant_locator_api.model.ResponseValues;
 import com.visa.hackathon.virtualQueueAndOffers.Enum.ResponseStatus;
 import com.visa.hackathon.virtualQueueAndOffers.HttpEntities.LoginResponse;
 import com.visa.hackathon.virtualQueueAndOffers.HttpEntities.MerchantLocatorResponse;
@@ -23,10 +23,10 @@ import com.visa.hackathon.virtualQueueAndOffers.Service.MerchantLocatorService;
 
 	@RestController
 	public class MerchantLocatorController {
-	
+
 		@Autowired
 		MerchantLocatorService merchantLocatorService;
-	
+
 		 @RequestMapping("/locateAllMerchant/{latitude}/{longitude}")
 	    public MerchantLocatorResponse locateAllMerchant(@PathVariable("latitude") String latitude,
 	                                 @PathVariable("longitude") String longitude){
@@ -37,7 +37,7 @@ import com.visa.hackathon.virtualQueueAndOffers.Service.MerchantLocatorService;
 		 else
 			return new MerchantLocatorResponse(null, ResponseStatus.FAILURE, "No merchant found");
 	 }
-	 
+
 	 @RequestMapping("/locateMerchantByDistance/{latitude}/{longitude}/{distance}")
 	    public MerchantLocatorResponse locateMerchantByDistance(@PathVariable("latitude") String latitude,
 	                                 @PathVariable("longitude") String longitude,
@@ -49,7 +49,7 @@ import com.visa.hackathon.virtualQueueAndOffers.Service.MerchantLocatorService;
 		 else
 			return new MerchantLocatorResponse(null, ResponseStatus.FAILURE, "No merchant found");
 	 }
-	 
+
 	 @RequestMapping("/locateMerchantByCategory/{latitude}/{longitude}/{category}")
 	    public MerchantLocatorResponse locateMerchantByDistance(@PathVariable("latitude") String latitude,
 	                                 @PathVariable("longitude") String longitude,
