@@ -13,6 +13,6 @@ public interface CustomerQueueRelationDAO extends JpaRepository<CustomerQueueRel
 
     List<CustomerQueueRelation> findAllByQueue_QueueIdAndQueuePositionIsGreaterThanAndCustomerQStatus(long queue_id, int queuePosition, CustomerQStatus customerQStatus);
 
-    List<CustomerQueueRelation> findAllByCustomerAndIsValid(long customer_id,boolean isValid);
+    List<CustomerQueueRelation> findAllByCustomer_IdAndIsValid(long customer_id,boolean isValid);
 
 }

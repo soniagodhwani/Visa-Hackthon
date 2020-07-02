@@ -101,9 +101,8 @@ public class QueueController {
     }
 
     @GetMapping(path="/{customer_id}")
-    public List<Queue> getUserQueues(@PathVariable("customer_id") String cqr_id){
-        long customer_id = Long.parseLong(cqr_id);
-        return  queingService.getQueues(customer_id);
+    public List<Queue> getUserQueues(@PathVariable("customer_id") long cqr_id){
+        return  queingService.getQueues(cqr_id);
     }
 
 

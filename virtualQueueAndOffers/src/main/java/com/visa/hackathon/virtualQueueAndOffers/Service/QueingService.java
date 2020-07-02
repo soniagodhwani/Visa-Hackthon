@@ -36,7 +36,7 @@ public class QueingService {
     private CustomerDAO customerDAO;
 
     public List<Queue> getQueues(long customer_id) {
-        List<CustomerQueueRelation> customersQRs = customerQueueRelationDAO.findAllByCustomerAndIsValid(customer_id, true);
+        List<CustomerQueueRelation> customersQRs = customerQueueRelationDAO.findAllByCustomer_IdAndIsValid(customer_id, true);
         List<Queue> queues = new ArrayList<>();
         for(CustomerQueueRelation cqr: customersQRs){
             queues.add(cqr.getQueue());
