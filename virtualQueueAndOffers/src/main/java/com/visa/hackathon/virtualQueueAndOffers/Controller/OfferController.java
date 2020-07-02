@@ -27,8 +27,9 @@ public class OfferController {
 	OfferService offerService;
 	
 	@RequestMapping("/retrieveOffers/{merchantId}")
-	public OfferResponse retrieveOffers(@PathVariable long merchantId){
-		List<Offer> lstOffer= offerService.getOffers(merchantId);
+	public OfferResponse retrieveOffers(@PathVariable String merchantId){
+		long mid = Long.parseLong(merchantId);
+		List<Offer> lstOffer= offerService.getOffers(mid);
 		if(lstOffer==null)
 			return new OfferResponse(null, ResponseStatus.FAILURE, "Error retrieving offers");
 		else if(lstOffer.isEmpty())

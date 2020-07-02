@@ -27,10 +27,12 @@ public class QueueController {
 
 
     @PostMapping("/join/{customer_id}/{queue_id}")
-    public QueuingResponse joinQ(@PathVariable("customer_id") long customer_id,
-                                 @PathVariable("queue_id") long queue_id){
+    public QueuingResponse joinQ(@PathVariable("customer_id") String customer_id,
+                                 @PathVariable("queue_id") String queue_id){
+        long cid = Long.parseLong(customer_id);
+        long qid = Long.parseLong(queue_id);
 
-        CustomerQueueRelation relation  = queingService.joinQueue(customer_id,queue_id);
+        CustomerQueueRelation relation  = queingService.joinQueue(cid,qid);
 
         if(relation == null){
             return new QueuingResponse(null, ResponseStatus.FAILURE,"You are already present in the queue");
@@ -44,7 +46,8 @@ public class QueueController {
     }
 
     @PostMapping("/leave/{customer_queue_relation_id}")
-    public QueuingResponse leaveQ(@PathVariable("customer_queue_relation_id") long customer_queue_relation_id){
+    public QueuingResponse leaveQ(@PathVariable("customer_queue_relation_id") String cqr_id){
+        long customer_queue_relation_id = Long.parseLong(cqr_id);
         CustomerQueueRelation relation  = null;
         try {
             relation = queingService.leaveQueue(customer_queue_relation_id);
@@ -59,7 +62,8 @@ public class QueueController {
     }
 
     @PostMapping("/checkin/{customer_queue_relation_id}")
-    public QueuingResponse checkInStore(@PathVariable("customer_queue_relation_id") long customer_queue_relation_id){
+    public QueuingResponse checkInStore(@PathVariable("customer_queue_relation_id") String cqr_id){
+        long customer_queue_relation_id = Long.parseLong(cqr_id);
         CustomerQueueRelation relation  = null;
         try {
             relation = queingService.checkIn(customer_queue_relation_id);
@@ -82,7 +86,8 @@ public class QueueController {
     }
 
     @PostMapping("/checkout/{customer_queue_relation_id}")
-    public QueuingResponse checkOutStore(@PathVariable("customer_queue_relation_id") long customer_queue_relation_id){
+    public QueuingResponse checkOutStore(@PathVariable("customer_queue_relation_id") String cqr_id){
+        long customer_queue_relation_id = Long.parseLong(cqr_id);
         CustomerQueueRelation relation  = queingService.checkOut(customer_queue_relation_id);
         if(relation == null){
             return new QueuingResponse(null, ResponseStatus.FAILURE,"You were not present in the queue");
@@ -96,7 +101,8 @@ public class QueueController {
     }
 
     @GetMapping(path="/{customer_id}")
-    public List<Queue> getUserQueues(@PathVariable("customer_id") long customer_id){
+    public List<Queue> getUserQueues(@PathVariable("customer_id") String cqr_id){
+        long customer_id = Long.parseLong(cqr_id);
         return  queingService.getQueues(customer_id);
     }
 

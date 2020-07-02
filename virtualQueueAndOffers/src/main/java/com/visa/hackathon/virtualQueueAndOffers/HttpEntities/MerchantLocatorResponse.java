@@ -23,9 +23,9 @@ public class MerchantLocatorResponse {
     private String message;
     
     @Autowired
-    private List<Merchant> lstMerchant;
+    private List<MerchantObjectResponse> lstMerchant;
 
-	public MerchantLocatorResponse(List<Merchant> lstMerchant, ResponseStatus responseStatus, String message) {
+	public MerchantLocatorResponse(List<MerchantObjectResponse> lstMerchant, ResponseStatus responseStatus, String message) {
 		super();
 		this.responseStatus = responseStatus;
 		this.message = message;

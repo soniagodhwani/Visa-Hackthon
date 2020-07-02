@@ -103,7 +103,7 @@ public class OfferService {
 	        
 	        ActivateOfferpostPayload body = new ActivateOfferpostPayload();
 	        body.setCommunityCode("PB001CL");
-	        body.setOfferId(String.valueOf(offer.getVisaOfferId()));
+	        body.setOfferId(Integer.valueOf(String.valueOf(offer.getVisaOfferId())));
 	        body.setOperationStatus("all");
 	        body.setFromDate(DateTime.parse(offer.getStartDate(), DateTimeFormat.forPattern("MM/dd/yyyy")).toString().substring(0,23)+"Z");
 	        body.setToDate(DateTime.parse(offer.getEndDate(), DateTimeFormat.forPattern("MM/dd/yyyy")).toString().substring(0,23)+"Z");
