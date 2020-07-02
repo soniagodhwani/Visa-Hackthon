@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Business Inventory",
-    "slug": "businessInventory",
+    "name": "Visa Hackathon",
+    "slug": "Visa Hackathon",
     "platforms": [
       "ios",
       "android",
@@ -23,11 +23,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.curious.businessInventory",
+      "bundleIdentifier": "com.curious.VisaHackathon",
       "buildNumber": "1.0.0"
     },
     "android": {
-      "package": "com.curious.businessInventory",
+      "package": "com.curious.VisaHackathon",
       "versionCode": 1
     }
   }

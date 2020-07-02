@@ -67,13 +67,6 @@
   "private": true,
   "name": "frontend",
   "description": "This README would normally document whatever steps are necessary to get your application up and running.",
-  "version": "1.0.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://ParvaShah@bitbucket.org/businessinventory/frontend.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/businessinventory/frontend#readme"
+  "version": "1.0.0"
+
 }

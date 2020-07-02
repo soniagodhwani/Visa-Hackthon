@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 import {queueReducer} from "./queueReducer";
 
 const INITIAL_STATE = {
-    businessOwnerView: true
+    
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
