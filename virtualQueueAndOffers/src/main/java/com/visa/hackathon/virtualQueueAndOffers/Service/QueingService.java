@@ -5,6 +5,7 @@ import com.visa.hackathon.virtualQueueAndOffers.DAO.Queue.CustomerQueueRelationD
 import com.visa.hackathon.virtualQueueAndOffers.DAO.Queue.QueueDAO;
 import com.visa.hackathon.virtualQueueAndOffers.DAO.UserProfiles.CustomerDAO;
 import com.visa.hackathon.virtualQueueAndOffers.Enum.CustomerQStatus;
+import com.visa.hackathon.virtualQueueAndOffers.HttpEntities.AllQueuesObject;
 import com.visa.hackathon.virtualQueueAndOffers.Model.Queue.CustomerQueueRelation;
 import com.visa.hackathon.virtualQueueAndOffers.Model.Queue.Queue;
 import com.visa.hackathon.virtualQueueAndOffers.Model.UserProfiles.Customer;
@@ -35,13 +36,18 @@ public class QueingService {
     @Autowired
     private CustomerDAO customerDAO;
 
-    public List<Queue> getQueues(long customer_id) {
+    public List<AllQueuesObject> getQueues(long customer_id) {
         List<CustomerQueueRelation> customersQRs = customerQueueRelationDAO.findAllByCustomer_IdAndIsValid(customer_id, true);
-        List<Queue> queues = new ArrayList<>();
+        List<AllQueuesObject> objs = new ArrayList<>();
+        AllQueuesObject aqo = new AllQueuesObject();
         for(CustomerQueueRelation cqr: customersQRs){
-            queues.add(cqr.getQueue());
+            Queue q = cqr.getQueue();
+            aqo.setQ(q);
+            aqo.setCqr(cqr);
+            aqo.setM(q.getMerchant());
+            objs.add(aqo);
         }
-        return queues;
+        return objs;
     }
 
     public CustomerQueueRelation joinQueue(long customerId, long queueId){
