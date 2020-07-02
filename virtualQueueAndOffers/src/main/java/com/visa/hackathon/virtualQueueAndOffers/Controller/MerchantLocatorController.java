@@ -31,7 +31,7 @@ import com.visa.hackathon.virtualQueueAndOffers.Service.MerchantLocatorService;
 		 @RequestMapping("/locateAllMerchant/{latitude}/{longitude}")
 	    public MerchantLocatorResponse locateAllMerchant(@PathVariable("latitude") String latitude,
 	                                 @PathVariable("longitude") String longitude){
-		 List<MerchantObjectResponse> lstMerchants = merchantLocatorService.getAllMerchants(latitude, longitude);
+		 	List<MerchantObjectResponse> lstMerchants = merchantLocatorService.getAllMerchants(latitude, longitude);
 		 if(!lstMerchants.isEmpty()){
 			 return new MerchantLocatorResponse(lstMerchants, ResponseStatus.SUCCESS, "Merchants located successfully");
 		 }

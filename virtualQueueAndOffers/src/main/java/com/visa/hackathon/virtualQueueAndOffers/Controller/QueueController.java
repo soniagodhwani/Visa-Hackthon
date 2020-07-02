@@ -2,6 +2,7 @@ package com.visa.hackathon.virtualQueueAndOffers.Controller;
 
 import com.visa.hackathon.virtualQueueAndOffers.Enum.CustomerQStatus;
 import com.visa.hackathon.virtualQueueAndOffers.Enum.ResponseStatus;
+import com.visa.hackathon.virtualQueueAndOffers.HttpEntities.AllQueuesObject;
 import com.visa.hackathon.virtualQueueAndOffers.HttpEntities.QueuingResponse;
 import com.visa.hackathon.virtualQueueAndOffers.Model.Queue.CustomerQueueRelation;
 import com.visa.hackathon.virtualQueueAndOffers.Model.Queue.Queue;
@@ -101,7 +102,7 @@ public class QueueController {
     }
 
     @GetMapping(path="/{customer_id}")
-    public List<Queue> getUserQueues(@PathVariable("customer_id") long cqr_id){
+    public List<AllQueuesObject> getUserQueues(@PathVariable("customer_id") long cqr_id){
         return  queingService.getQueues(cqr_id);
     }
 
